@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { httpsCallable } from 'firebase/functions';
-import { functions } from '../lib/firebase';
-import { getStripe } from '../lib/stripe';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 
@@ -13,65 +10,14 @@ export default function Subscribe() {
     const location = useLocation();
 
     const [processing, setProcessing] = useState(false);
-    const [status, setStatus] = useState('');
-    const [autoRedirected, setAutoRedirected] = useState(false);
 
-    useEffect(() => {
-        const params = new URLSearchParams(location.search);
-        if (params.get('session_id')) {
-            setStatus('success');
-            addToast('สมัครสมาชิกเรียบร้อย! ระบบจะส่งเครื่องฟรีและคุณจะได้รับซัพพอร์ต', 'success');
-            navigate('/membership', { replace: true });
-        }
-        if (params.get('cancelled')) {
-            setStatus('cancelled');
-            addToast('ยกเลิกการสมัครสมาชิกแล้ว คุณสามารถลองใหม่ได้เสมอ', 'info');
-        }
-    }, [location.search, addToast, navigate]);
-
-    useEffect(() => {
-        if (loading || !user || autoRedirected) {
-            return;
-        }
-
-        const params = new URLSearchParams(location.search);
-        if (params.get('session_id') || params.get('cancelled')) {
-            return;
-        }
-
-        setAutoRedirected(true);
-        handleSubscribe();
-    }, [loading, user, location.search, autoRedirected]);
-
-    const handleSubscribe = async () => {
+    const handleSubscribe = () => {
         if (!user) {
             navigate('/login');
             return;
         }
 
-        setProcessing(true);
-        try {
-            const createCheckout = httpsCallable(functions, 'createStripeCheckoutSession');
-            const result = await createCheckout({ userId: user.uid, email: user.email });
-            const sessionId = result.data?.sessionId;
-            if (!sessionId) {
-                throw new Error('ไม่สามารถสร้าง session การชำระเงินได้');
-            }
-
-            const stripe = await getStripe();
-            if (!stripe) {
-                throw new Error('Stripe ไม่ได้ถูกกำหนดค่าบนหน้าเว็บ');
-            }
-
-            const { error } = await stripe.redirectToCheckout({ sessionId });
-            if (error) {
-                throw new Error(error.message || 'ไม่สามารถไปยัง Stripe Checkout ได้');
-            }
-        } catch (error) {
-            console.error('Subscribe error:', error);
-            addToast(error.message || 'เกิดข้อผิดพลาดในการสมัครสมาชิก', 'error');
-            setProcessing(false);
-        }
+        navigate('/payment', { state: { amount: 699, orderId: 'subscribe-699', isSubscription: true } });
     };
 
     if (loading) {
@@ -127,8 +73,8 @@ export default function Subscribe() {
 
                             <div className="mt-6 rounded-3xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-sm text-emerald-700 dark:text-emerald-200">
                                 {processing
-                                    ? 'กำลังเปลี่ยนเส้นทางไปยัง Stripe Checkout โดยอัตโนมัติ...'
-                                    : 'ระบบจะพาไปยังหน้า Stripe Checkout ทันทีเพื่อให้ Demo ง่ายขึ้น'}
+                                    ? 'กำลังพาไปยังหน้าชำระเงินแบบ Demo...'
+                                    : 'ปุ่มนี้จะพาไปยังหน้า Demo Payment ทันที'}
                             </div>
 
                             <div className="mt-10 grid gap-4 sm:grid-cols-2">

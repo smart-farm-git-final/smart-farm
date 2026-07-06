@@ -70,6 +70,24 @@ export default function Navbar() {
                         >
                             โปรโมชั่น
                         </Link>
+                        <Link
+                            to="/orders"
+                            className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-600 transition-colors"
+                        >
+                            คำสั่งซื้อ
+                        </Link>
+                        <Link
+                            to="/membership"
+                            className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-600 transition-colors"
+                        >
+                            Membership
+                        </Link>
+                        <Link
+                            to="/subscribe"
+                            className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-600 transition-colors"
+                        >
+                            สมัครสมาชิก
+                        </Link>
                         {isAdmin && (
                             <Link
                                 to="/admin"
