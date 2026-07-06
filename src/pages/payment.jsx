@@ -226,7 +226,7 @@ export default function Payment() {
     };
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center p-4 sm:p-6">
+        <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-gray-950 dark:text-white flex flex-col items-center justify-center p-4 sm:p-6">
             <div className="relative z-10 w-full max-w-md">
                 <div className="text-center mb-10">
                     <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">

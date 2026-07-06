@@ -34,22 +34,22 @@ export default function Login() {
     // google sign-in removed
 
     return (
-        <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4 py-12 relative overflow-hidden">
+        <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white flex items-center justify-center px-4 py-12 relative overflow-hidden">
             {/* Background decorations */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full bg-emerald-500/10 blur-3xl"></div>
-                <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-slate-700/70 blur-2xl"></div>
-                <div className="absolute top-24 left-10 w-32 h-32 rounded-full bg-slate-800/70 blur-2xl"></div>
+                <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-slate-300/70 dark:bg-slate-700/70 blur-2xl"></div>
+                <div className="absolute top-24 left-10 w-32 h-32 rounded-full bg-slate-200/70 dark:bg-slate-800/70 blur-2xl"></div>
             </div>
 
-            <div className="w-full max-w-md relative z-10 animate-fade-in-up">
+            <div className="w-full max-w-md relative z-10 animate-fade-in-up rounded-[28px] border border-slate-200/80 bg-white/90 p-8 shadow-2xl dark:border-slate-800 dark:bg-slate-900/90">
                 {/* Header */}
                 <div className="text-center mb-8">
                     <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg animate-float">
                         <span className="text-2xl">🌱</span>
                     </div>
-                    <h1 className="text-3xl font-black text-white mb-2">ยินดีต้อนรับกลับ!</h1>
-                    <p className="text-slate-400">เข้าสู่ระบบ Smart Farm เพื่อเลือกซื้อสินค้าเกษตรอินทรีย์</p>
+                    <h1 className="text-3xl font-black text-slate-900 dark:text-white mb-2">ยินดีต้อนรับกลับ!</h1>
+                    <p className="text-slate-600 dark:text-slate-400">เข้าสู่ระบบ Smart Farm เพื่อเลือกซื้อสินค้าเกษตรอินทรีย์</p>
                     <div className="absolute inset-x-0 top-0 h-1 rounded-t-[28px] bg-gradient-to-r from-emerald-500 to-sky-500"></div>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Email */}
@@ -63,7 +63,7 @@ export default function Login() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
-                                    className="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-700 bg-slate-950 text-white focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm placeholder-slate-400"
+                                    className="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-300 bg-white text-slate-900 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm placeholder-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                                     placeholder="your@email.com"
                                 />
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
@@ -85,7 +85,7 @@ export default function Login() {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
-                                    className="w-full pl-12 pr-12 py-4 rounded-2xl border border-slate-700 bg-slate-950 text-white focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm placeholder-slate-400"
+                                    className="w-full pl-12 pr-12 py-4 rounded-2xl border border-slate-300 bg-white text-slate-900 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm placeholder-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                                     placeholder="รหัสผ่านของคุณ"
                                 />
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
@@ -116,7 +116,7 @@ export default function Login() {
                         <div className="flex items-center justify-between text-sm">
                             <label className="flex items-center">
                                 <input type="checkbox" className="rounded border-slate-700 text-emerald-600 focus:ring-emerald-500 mr-2" />
-                                <span className="text-slate-400">จำฉันไว้</span>
+                                <span className="text-slate-600 dark:text-slate-400">จำฉันไว้</span>
                             </label>
                             <Link to="/forgot-password" className="text-emerald-600 hover:text-emerald-700 font-medium transition-colors">
                                 ลืมรหัสผ่าน?
@@ -151,7 +151,7 @@ export default function Login() {
                             <div className="w-full border-t border-slate-700"></div>
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="px-4 bg-slate-950 text-slate-400">หรือ</span>
+                            <span className="px-4 bg-white text-slate-500 dark:bg-slate-950 dark:text-slate-400">หรือ</span>
                         </div>
                     </div>
 
@@ -159,9 +159,9 @@ export default function Login() {
 
                     {/* Register Link */}
                     <div className="text-center mt-8 pt-6 border-t border-slate-800">
-                        <p className="text-slate-400">
+                        <p className="text-slate-600 dark:text-slate-400">
                             ยังไม่มีบัญชี?
-                            <Link to="/register" className="text-emerald-600 hover:text-emerald-700 font-bold ml-2 transition-colors">
+                            <Link to="/register" className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 font-bold ml-2 transition-colors">
                                 สมัครสมาชิกฟรี
                             </Link>
                         </p>
@@ -170,7 +170,7 @@ export default function Login() {
 
                 {/* Footer */}
                 <div className="text-center mt-8">
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                         การเข้าสู่ระบบของคุณปลอดภัยและได้รับการปกป้อง 🔒
                     </p>
                 </div>

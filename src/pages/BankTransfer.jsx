@@ -154,8 +154,8 @@ export default function BankTransfer() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 text-center font-sans font-black uppercase tracking-tighter">
-            <div className="max-w-sm w-full bg-white rounded-[3.5rem] p-10 shadow-2xl border border-gray-100">
+        <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 flex flex-col items-center justify-center p-6 text-center font-sans font-black uppercase tracking-tighter">
+            <div className="max-w-sm w-full bg-white rounded-[3.5rem] p-10 shadow-2xl border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <h1 className="text-xl font-black mb-1 text-gray-800 leading-none">Bank Transfer</h1>
                 <p className="text-[10px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-10 border-b pb-2 leading-none">K-BANK PAYMENT</p>
 

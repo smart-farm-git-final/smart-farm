@@ -74,7 +74,7 @@ export default function Receipt() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6 sm:p-12 font-sans overflow-x-hidden text-gray-800">
+        <div className="min-h-screen bg-gray-100 text-gray-800 dark:bg-gray-950 dark:text-gray-100 flex flex-col items-center p-6 sm:p-12 font-sans overflow-x-hidden">
 
             {/* 🛠 Toolbar (no-print) */}
             <div className="max-w-md w-full flex justify-end gap-3 mb-4 no-print">

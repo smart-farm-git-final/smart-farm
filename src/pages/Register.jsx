@@ -42,22 +42,22 @@ export default function Register() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4 py-12 relative overflow-hidden">
+        <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white flex items-center justify-center px-4 py-12 relative overflow-hidden">
             {/* Background decorations */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full bg-emerald-500/10 blur-3xl"></div>
-                <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-slate-700/70 blur-2xl"></div>
-                <div className="absolute top-24 right-10 w-32 h-32 rounded-full bg-slate-800/70 blur-2xl"></div>
+                <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-slate-300/70 dark:bg-slate-700/70 blur-2xl"></div>
+                <div className="absolute top-24 right-10 w-32 h-32 rounded-full bg-slate-200/70 dark:bg-slate-800/70 blur-2xl"></div>
             </div>
 
-            <div className="w-full max-w-md relative z-10 animate-fade-in-up">
+            <div className="w-full max-w-md relative z-10 animate-fade-in-up rounded-[28px] border border-slate-200/80 bg-white/90 p-8 shadow-2xl dark:border-slate-800 dark:bg-slate-900/90">
                 {/* Header */}
                 <div className="text-center mb-8">
                     <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg animate-float">
                         <span className="text-2xl">🌱</span>
                     </div>
-                    <h1 className="text-3xl font-black text-white mb-2">สร้างบัญชีใหม่</h1>
-                    <p className="text-slate-400">เข้าร่วมครอบครัว Smart Farm และเริ่มช้อปปิ้งสินค้าเกษตรอินทรีย์</p>
+                    <h1 className="text-3xl font-black text-slate-900 dark:text-white mb-2">สร้างบัญชีใหม่</h1>
+                    <p className="text-slate-600 dark:text-slate-400">เข้าร่วมครอบครัว Smart Farm และเริ่มช้อปปิ้งสินค้าเกษตรอินทรีย์</p>
                     <div className="absolute inset-x-0 top-0 h-1 rounded-t-[28px] bg-gradient-to-r from-emerald-500 to-sky-500"></div>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Name */}
@@ -143,7 +143,7 @@ export default function Register() {
                                     )}
                                 </button>
                             </div>
-                            <p className="text-xs text-slate-500">รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร</p>
                         </div>
 
                         {/* Confirm Password */}
@@ -211,13 +211,13 @@ export default function Register() {
                     <div className="text-center mt-6">
                         <p className="text-xs text-slate-500">
                             การสมัครสมาชิกแสดงว่าคุณยอมรับ
-                            <Link to="/terms" className="text-emerald-400 hover:text-emerald-300 font-medium"> นโยบายและเงื่อนไข</Link>
+                            <Link to="/terms" className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 font-medium"> นโยบายและเงื่อนไข</Link>
                         </p>
                     </div>
 
                     {/* Login Link */}
                     <div className="text-center mt-6 pt-6 border-t border-slate-800">
-                        <p className="text-slate-400">
+                        <p className="text-slate-600 dark:text-slate-400">
                             มีบัญชีอยู่แล้ว?
                             <Link to="/login" className="text-emerald-400 hover:text-emerald-300 font-bold ml-2 transition-colors">
                                 เข้าสู่ระบบ

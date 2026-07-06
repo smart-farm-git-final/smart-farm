@@ -61,36 +61,36 @@ export default function Subscribe() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-950 text-white">
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500" />
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-slate-950 text-white py-16 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white py-16 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-5xl">
                 <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-start">
                     <div className="space-y-8">
-                        <div className="rounded-[2.5rem] border border-emerald-600/20 bg-slate-900/90 p-10 shadow-2xl shadow-emerald-500/10">
+                        <div className="rounded-[2.5rem] border border-emerald-600/20 bg-white/90 p-10 shadow-2xl shadow-emerald-500/10 dark:bg-slate-900/90">
                             <div className="inline-flex items-center gap-3 rounded-full bg-emerald-600/10 px-4 py-2 text-sm font-semibold text-emerald-200 uppercase tracking-[0.35em]">
                                 สมัครสมาชิก Premium
                             </div>
-                            <h1 className="mt-6 text-4xl font-black tracking-tight text-white">จ่ายรายเดือน 699 บาท</h1>
-                            <p className="mt-4 max-w-2xl text-slate-300 leading-relaxed text-lg">
+                            <h1 className="mt-6 text-4xl font-black tracking-tight text-slate-900 dark:text-white">จ่ายรายเดือน 699 บาท</h1>
+                            <p className="mt-4 max-w-2xl text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
                                 รับเครื่องไปใช้ฟรี พร้อมบริการซัพพอร์ต ติดตั้ง และอัปเดตสินค้าใหม่ทุกเดือน.
                                 ระบบของเราจะบันทึกสถานะสมาชิกของคุณใน Firestore เพื่อให้บริการได้ต่อเนื่อง.
                             </p>
 
                             <div className="mt-10 grid gap-4 sm:grid-cols-2">
                                 <div className="rounded-3xl border border-emerald-500/20 bg-emerald-500/10 p-6">
-                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-200 font-black">ราคา</p>
-                                    <p className="mt-4 text-5xl font-black text-white">699</p>
-                                    <p className="text-sm text-slate-400 uppercase tracking-[0.35em] mt-2">บาท/เดือน</p>
+                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-700 dark:text-emerald-200 font-black">ราคา</p>
+                                    <p className="mt-4 text-5xl font-black text-slate-900 dark:text-white">699</p>
+                                    <p className="text-sm text-slate-500 dark:text-slate-400 uppercase tracking-[0.35em] mt-2">บาท/เดือน</p>
                                 </div>
-                                <div className="rounded-3xl border border-slate-800 bg-slate-900/95 p-6">
-                                    <p className="text-sm uppercase tracking-[0.35em] text-slate-400 font-black">รวม</p>
-                                    <ul className="mt-4 space-y-3 text-sm text-slate-300">
+                                <div className="rounded-3xl border border-slate-200 bg-slate-100/80 p-6 dark:border-slate-800 dark:bg-slate-900/95">
+                                    <p className="text-sm uppercase tracking-[0.35em] text-slate-500 dark:text-slate-400 font-black">รวม</p>
+                                    <ul className="mt-4 space-y-3 text-sm text-slate-700 dark:text-slate-300">
                                         <li>✅ เครื่องฟรีเมื่อสมัครสมาชิก</li>
                                         <li>✅ ฟรีซัพพอร์ต 24/7</li>
                                         <li>✅ สินค้าใหม่และบริการพิเศษ</li>
@@ -100,13 +100,13 @@ export default function Subscribe() {
                             </div>
 
                             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-                                <div className="rounded-3xl bg-slate-900/80 p-6 border border-slate-800">
-                                    <p className="text-sm uppercase tracking-[0.35em] text-slate-400 font-black">ลูกค้า</p>
-                                    <p className="mt-3 text-xl font-bold text-white">{user?.displayName || user?.email || 'ผู้ใช้ Smart Farm'}</p>
+                                <div className="rounded-3xl bg-slate-100/80 p-6 border border-slate-200 dark:bg-slate-900/80 dark:border-slate-800">
+                                    <p className="text-sm uppercase tracking-[0.35em] text-slate-500 dark:text-slate-400 font-black">ลูกค้า</p>
+                                    <p className="mt-3 text-xl font-bold text-slate-900 dark:text-white">{user?.displayName || user?.email || 'ผู้ใช้ Smart Farm'}</p>
                                 </div>
-                                <div className="rounded-3xl bg-slate-900/80 p-6 border border-slate-800">
-                                    <p className="text-sm uppercase tracking-[0.35em] text-slate-400 font-black">สถานะ</p>
-                                    <p className="mt-3 text-xl font-bold text-emerald-400">พร้อมสมัครสมาชิก</p>
+                                <div className="rounded-3xl bg-slate-100/80 p-6 border border-slate-200 dark:bg-slate-900/80 dark:border-slate-800">
+                                    <p className="text-sm uppercase tracking-[0.35em] text-slate-500 dark:text-slate-400 font-black">สถานะ</p>
+                                    <p className="mt-3 text-xl font-bold text-emerald-600 dark:text-emerald-400">พร้อมสมัครสมาชิก</p>
                                 </div>
                             </div>
 
@@ -135,35 +135,35 @@ export default function Subscribe() {
                             </div>
                         </div>
 
-                        <div className="rounded-[2.5rem] bg-slate-900/80 border border-slate-800 p-8 shadow-2xl shadow-black/10">
-                            <h2 className="text-2xl font-black text-white">ทำไมต้องสมัครสมาชิก?</h2>
+                        <div className="rounded-[2.5rem] bg-white/90 border border-slate-200 p-8 shadow-2xl shadow-black/10 dark:bg-slate-900/80 dark:border-slate-800">
+                            <h2 className="text-2xl font-black text-slate-900 dark:text-white">ทำไมต้องสมัครสมาชิก?</h2>
                             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                                <div className="rounded-3xl bg-slate-950/80 p-6 border border-slate-800">
-                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-300 font-black">เครื่องฟรี</p>
-                                    <p className="mt-3 text-slate-300 leading-relaxed">รับเครื่องสำหรับใช้งาน Smart Farm แบบฟรีเมื่อเริ่มสัญญารายเดือน.</p>
+                                <div className="rounded-3xl bg-slate-100/80 p-6 border border-slate-200 dark:bg-slate-950/80 dark:border-slate-800">
+                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-600 dark:text-emerald-300 font-black">เครื่องฟรี</p>
+                                    <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">รับเครื่องสำหรับใช้งาน Smart Farm แบบฟรีเมื่อเริ่มสัญญารายเดือน.</p>
                                 </div>
-                                <div className="rounded-3xl bg-slate-950/80 p-6 border border-slate-800">
-                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-300 font-black">ซัพพอร์ตเต็มรูปแบบ</p>
-                                    <p className="mt-3 text-slate-300 leading-relaxed">บริการลูกค้าด่วน ช่วยเหลือด้านเทคนิค และคำแนะนำการใช้งาน.</p>
+                                <div className="rounded-3xl bg-slate-100/80 p-6 border border-slate-200 dark:bg-slate-950/80 dark:border-slate-800">
+                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-600 dark:text-emerald-300 font-black">ซัพพอร์ตเต็มรูปแบบ</p>
+                                    <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">บริการลูกค้าด่วน ช่วยเหลือด้านเทคนิค และคำแนะนำการใช้งาน.</p>
                                 </div>
-                                <div className="rounded-3xl bg-slate-950/80 p-6 border border-slate-800">
-                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-300 font-black">อัปเดตสินค้า</p>
-                                    <p className="mt-3 text-slate-300 leading-relaxed">สิทธิพิเศษสำหรับสมาชิก รับข้อเสนอและสินค้าใหม่ก่อนใคร.</p>
+                                <div className="rounded-3xl bg-slate-100/80 p-6 border border-slate-200 dark:bg-slate-950/80 dark:border-slate-800">
+                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-600 dark:text-emerald-300 font-black">อัปเดตสินค้า</p>
+                                    <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">สิทธิพิเศษสำหรับสมาชิก รับข้อเสนอและสินค้าใหม่ก่อนใคร.</p>
                                 </div>
-                                <div className="rounded-3xl bg-slate-950/80 p-6 border border-slate-800">
-                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-300 font-black">ยกเลิกง่าย</p>
-                                    <p className="mt-3 text-slate-300 leading-relaxed">ควบคุมสัญญาได้เอง แก้ไขหรือยกเลิกได้ตามต้องการ.</p>
+                                <div className="rounded-3xl bg-slate-100/80 p-6 border border-slate-200 dark:bg-slate-950/80 dark:border-slate-800">
+                                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-600 dark:text-emerald-300 font-black">ยกเลิกง่าย</p>
+                                    <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">ควบคุมสัญญาได้เอง แก้ไขหรือยกเลิกได้ตามต้องการ.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="rounded-[2.5rem] border border-emerald-600/20 bg-emerald-500/10 p-10 shadow-2xl shadow-emerald-500/20">
-                        <p className="text-sm uppercase tracking-[0.35em] text-emerald-200 font-black mb-4">สิทธิพิเศษสมาชิก</p>
-                        <div className="space-y-5 text-slate-200">
-                            <div className="rounded-3xl bg-slate-950/90 p-5 border border-slate-800">
-                                <p className="font-black text-white">Free Device</p>
-                                <p className="mt-2 text-sm text-slate-300">รับเครื่องไปใช้ฟรี พร้อมบริการติดตั้งเบื้องต้น.</p>
+                        <p className="text-sm uppercase tracking-[0.35em] text-emerald-700 dark:text-emerald-200 font-black mb-4">สิทธิพิเศษสมาชิก</p>
+                        <div className="space-y-5 text-slate-700 dark:text-slate-200">
+                            <div className="rounded-3xl bg-slate-100/80 p-5 border border-slate-200 dark:bg-slate-950/90 dark:border-slate-800">
+                                <p className="font-black text-slate-900 dark:text-white">Free Device</p>
+                                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">รับเครื่องไปใช้ฟรี พร้อมบริการติดตั้งเบื้องต้น.</p>
                             </div>
                             <div className="rounded-3xl bg-slate-950/90 p-5 border border-slate-800">
                                 <p className="font-black text-white">Priority Support</p>
