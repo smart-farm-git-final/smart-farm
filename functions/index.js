@@ -1,4 +1,4 @@
-const { onCall, onRequest } = require("firebase-functions/v2/https");
+const { onCall, onRequest, HttpsError } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const admin = require("firebase-admin");
 const generatePayload = require('promptpay-qr');
@@ -90,7 +90,10 @@ exports.createStripeCheckoutSession = onCall({ cors: true }, async (request) => 
         return { sessionId: session.id };
     } catch (error) {
         console.error('Stripe checkout session error:', error);
-        throw new Error('ไม่สามารถสร้างการชำระเงินได้ โปรดลองใหม่อีกครั้ง');
+        throw new HttpsError('internal', 'ไม่สามารถสร้างการชำระเงินได้ โปรดลองใหม่อีกครั้ง', {
+            code: error.code || 'stripe_checkout_error',
+            message: error.message,
+        });
     }
 });
 
