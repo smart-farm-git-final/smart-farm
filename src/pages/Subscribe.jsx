@@ -14,6 +14,7 @@ export default function Subscribe() {
 
     const [processing, setProcessing] = useState(false);
     const [status, setStatus] = useState('');
+    const [autoRedirected, setAutoRedirected] = useState(false);
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -26,7 +27,21 @@ export default function Subscribe() {
             setStatus('cancelled');
             addToast('ยกเลิกการสมัครสมาชิกแล้ว คุณสามารถลองใหม่ได้เสมอ', 'info');
         }
-    }, [location.search, addToast]);
+    }, [location.search, addToast, navigate]);
+
+    useEffect(() => {
+        if (loading || !user || autoRedirected) {
+            return;
+        }
+
+        const params = new URLSearchParams(location.search);
+        if (params.get('session_id') || params.get('cancelled')) {
+            return;
+        }
+
+        setAutoRedirected(true);
+        handleSubscribe();
+    }, [loading, user, location.search, autoRedirected]);
 
     const handleSubscribe = async () => {
         if (!user) {
@@ -108,6 +123,12 @@ export default function Subscribe() {
                                     <p className="text-sm uppercase tracking-[0.35em] text-slate-500 dark:text-slate-400 font-black">สถานะ</p>
                                     <p className="mt-3 text-xl font-bold text-emerald-600 dark:text-emerald-400">พร้อมสมัครสมาชิก</p>
                                 </div>
+                            </div>
+
+                            <div className="mt-6 rounded-3xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-sm text-emerald-700 dark:text-emerald-200">
+                                {processing
+                                    ? 'กำลังเปลี่ยนเส้นทางไปยัง Stripe Checkout โดยอัตโนมัติ...'
+                                    : 'ระบบจะพาไปยังหน้า Stripe Checkout ทันทีเพื่อให้ Demo ง่ายขึ้น'}
                             </div>
 
                             <div className="mt-10 grid gap-4 sm:grid-cols-2">
