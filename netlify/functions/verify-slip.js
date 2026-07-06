@@ -34,7 +34,7 @@ function extractAccountFromTag(tagValue) {
                 if (digits.length >= 9 && digits.length <= 15) return digits;
             }
         }
-    } catch(e) {
+    } catch (e) {
         // กรณีไม่ใช่โครงสร้าง TLV ซ้อน ให้ข้ามไป
     }
     return null;
@@ -56,76 +56,63 @@ exports.handler = async (event) => {
             return { statusCode: 400, headers, body: JSON.stringify({ success: false, message: 'Missing QR payload' }) };
         }
 
-        // ==========================================
-        // โหมดที่ 1: ตรวจสอบว่าเป็นคิวอาร์บน "สลิปโอนเงิน" (e-Slip) หรือไม่?
-        // ==========================================
-        // slipVerify จะเช็คโครงสร้างและคำนวณ CRC ให้ ถ้าผ่านจะได้ Object กลับมา
+
         const slipData = slipVerify(payload);
-        
+
         if (slipData) {
             console.log('✅ Detected Valid e-Slip QR:', slipData);
-            
-            // ตอนนี้เราดึงรหัสอ้างอิงและธนาคารออกมาได้แล้ว รอเอาไปเชื่อม API ในอนาคต
-            return { 
-                statusCode: 400, 
-                headers, 
-                body: JSON.stringify({ 
-                    success: false, 
+
+            return {
+                statusCode: 400,
+                headers,
+                body: JSON.stringify({
+                    success: false,
                     isSlip: true,
                     message: 'สแกนสำเร็จ: เป็นสลิปโอนเงิน แต่ระบบยังไม่ได้เชื่อมต่อ API สำหรับตรวจสอบยอด',
                     data: {
-                        sendingBank: slipData.sendingBank, // รหัสธนาคารต้นทาง (เช่น 004 = กสิกร)
-                        transRef: slipData.transRef        // รหัสอ้างอิงสำหรับไปเช็คกับ API
+                        sendingBank: slipData.sendingBank,
+                        transRef: slipData.transRef
                     }
-                }) 
+                })
             };
         }
 
-        // ==========================================
-        // โหมดที่ 2: ตรวจสอบว่าเป็นคิวอาร์สำหรับ "จ่ายเงิน" (Payment QR) หรือไม่?
-        // ==========================================
         let ppqr;
         try {
-             // ใช้ promptparse ถอดรหัสโครงสร้าง EMVCo 
-             ppqr = parse(payload);
-        } catch(e) {
-             return { statusCode: 400, headers, body: JSON.stringify({ success: false, message: 'รูปแบบ QR ไม่ถูกต้อง (Invalid Format)' }) };
+            ppqr = parse(payload);
+        } catch (e) {
+            return { statusCode: 400, headers, body: JSON.stringify({ success: false, message: 'รูปแบบ QR ไม่ถูกต้อง (Invalid Format)' }) };
         }
 
-        // เช็ค Tag '00' ว่าเป็นโครงสร้าง QR มาตรฐานหรือไม่
         if (!ppqr || !ppqr.getTagValue('00')) {
-             return { statusCode: 400, headers, body: JSON.stringify({ success: false, message: 'ไม่พบข้อมูล Payment QR ที่ถูกต้อง' }) };
+            return { statusCode: 400, headers, body: JSON.stringify({ success: false, message: 'ไม่พบข้อมูล Payment QR ที่ถูกต้อง' }) };
         }
 
-        // ดึงข้อมูลหลักๆ ออกมา (Tag 54 = ยอดเงิน, 59 = ชื่อร้าน, 60 = เมือง)
         const amountStr = ppqr.getTagValue('54');
         const amount = Number(amountStr) || 0;
         const merchantName = ppqr.getTagValue('59') || '';
-        
-        // ค้นหาเลขบัญชีผู้รับเงิน (มักอยู่ใน Tag 26-35)
+
         let account = '';
         const accountFields = ['26', '27', '28', '29', '30', '31', '32', '33', '34', '35'];
         for (const field of accountFields) {
             const tagValue = ppqr.getTagValue(field);
             if (tagValue) {
                 const found = extractAccountFromTag(tagValue);
-                if (found) { 
-                    account = found; 
-                    break; 
+                if (found) {
+                    account = found;
+                    break;
                 }
             }
         }
 
-        // ดึง TransRef เพิ่มเติมจาก Tag 62 (ถ้ามี)
         let transRef = '';
         const tag62 = ppqr.getTagValue('62');
         if (tag62) {
             transRef = parse(tag62).getTagValue('07') || '';
         }
-        
+
         const payloadHash = createHash('sha256').update(payload).digest('hex');
-        
-        // เข้าสู่ลอจิกตรวจสอบเงื่อนไข
+
         const validAccount = isValidPromptPayAccount(account);
         const validAmount = amount > 0;
 

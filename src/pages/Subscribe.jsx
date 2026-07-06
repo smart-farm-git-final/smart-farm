@@ -20,6 +20,7 @@ export default function Subscribe() {
         if (params.get('session_id')) {
             setStatus('success');
             addToast('สมัครสมาชิกเรียบร้อย! ระบบจะส่งเครื่องฟรีและคุณจะได้รับซัพพอร์ต', 'success');
+            navigate('/membership', { replace: true });
         }
         if (params.get('cancelled')) {
             setStatus('cancelled');

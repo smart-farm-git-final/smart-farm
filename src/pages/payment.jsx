@@ -185,6 +185,7 @@ export default function Payment() {
 
                     setUploading(false);
                     setStatusModal({ show: true, success: true, message: 'ขอสมัครสมาชิกเรียบร้อยแล้ว!', details: 'ส่งหลักฐานชำระเงินให้ทางทีมงานตรวจสอบแล้ว' });
+                    setTimeout(() => navigate('/membership'), 800);
                 } else {
                     const q = query(collection(db, 'orders'), where('orderId', '==', orderId));
                     const snap = await getDocs(q);
